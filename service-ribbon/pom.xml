@@ -10,18 +10,18 @@
     </parent>
 
     <groupId>com.dv</groupId>
-    <artifactId>provider-web</artifactId>
+    <artifactId>service-ribbon</artifactId>
     <version>${demo-version}</version>
     <packaging>jar</packaging>
 
-    <name>provider-web</name>
-    <description>服务提供者</description>
-
+    <name>service-ribbon</name>
+    <description>ribbon 测试</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
     </properties>
 
     <dependencies>
@@ -39,7 +39,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -47,12 +46,13 @@
         </dependency>
     </dependencies>
 
+
     <profiles>
         <profile>
             <id>local</id>
             <properties>
                 <final.project.name>provider-web</final.project.name>
-                <server.port>8781</server.port>
+                <server.port>8782</server.port>
                 <runtime.env>local</runtime.env>
 
                 <!--sql日志级别-->
@@ -135,4 +135,6 @@
             </plugin>
         </plugins>
     </build>
+
+
 </project>
