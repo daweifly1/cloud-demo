@@ -10,8 +10,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>register-center-web</artifactId>
-
     <name>register-center-web</name>
+    <packaging>jar</packaging>
     <url>http://www.example.com</url>
 
     <properties>
@@ -27,12 +27,80 @@
         </dependency>
     </dependencies>
 
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <final.project.name>registration-center-web</final.project.name>
+                <server.port>8881</server.port>
+                <runtime.env>local</runtime.env>
+
+                <!--sql日志级别-->
+                <log.sql.level>debug</log.sql.level>
+                <!--忽略测试-->
+                <skipTests>true</skipTests>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <final.project.name>registration-center-web</final.project.name>
+                <server.port>${server.port}</server.port>
+                <runtime.env>test</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>perf</id>
+            <properties>
+                <final.project.name>registration-center-web</final.project.name>
+                <server.port>${server.port}</server.port>
+                <runtime.env>test</runtime.env>
+            </properties>
+        </profile>
+        <profile>
+            <id>online</id>
+            <properties>
+                <final.project.name>registration-center-web</final.project.name>
+                <server.port>${server.port}</server.port>
+                <runtime.env>online</runtime.env>
+            </properties>
+        </profile>
+    </profiles>
+
     <build>
+        <finalName>${final.project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <excludes>
+                    <exclude>/env/**/*</exclude>
+                    <exclude>/lib/**/*</exclude>
+                </excludes>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources/env/${runtime.env}</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>src/main/resources/lib</directory>
+            </resource>
+        </resources>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>
