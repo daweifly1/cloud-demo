@@ -1,6 +1,6 @@
 package com.dv.controller;
 
-import com.dv.service.HelloService;
+import com.dv.service.SchedualService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @Autowired
-    HelloService helloService;
+    SchedualService schedualService;
 
     @RequestMapping("/hello")
     public String home(@RequestParam(value = "name", defaultValue = "forezp") String name) {
-        return helloService.hiService(name);
+        return schedualService.sayHiFromClientOne(name);
     }
 }

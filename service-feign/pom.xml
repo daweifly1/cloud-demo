@@ -31,6 +31,11 @@
         </dependency>
 
         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
@@ -52,7 +57,7 @@
             <id>local</id>
             <properties>
                 <final.project.name>provider-web</final.project.name>
-                <server.port>8782</server.port>
+                <server.port>8783</server.port>
                 <runtime.env>local</runtime.env>
 
                 <!--sql日志级别-->
