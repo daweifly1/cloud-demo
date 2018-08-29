@@ -36,7 +36,8 @@
                 <final.project.name>registration-center-web</final.project.name>
                 <server.port>8881</server.port>
                 <runtime.env>local</runtime.env>
-
+                <efaultZone>http://localhost:8881/eureka/</efaultZone>
+                <hostname>localhost</hostname>
                 <!--sql日志级别-->
                 <log.sql.level>debug</log.sql.level>
                 <!--忽略测试-->
@@ -49,8 +50,10 @@
         <profile>
             <id>test</id>
             <properties>
-                <final.project.name>registration-center-web</final.project.name>
+                <final.project.name>${final.project.name}</final.project.name>
                 <server.port>${server.port}</server.port>
+                <defaultZone>${defaultZone}</defaultZone>
+                <hostname>${hostname}</hostname>
                 <runtime.env>test</runtime.env>
             </properties>
         </profile>
@@ -59,6 +62,8 @@
             <properties>
                 <final.project.name>registration-center-web</final.project.name>
                 <server.port>${server.port}</server.port>
+                <defaultZone>${defaultZone}</defaultZone>
+                <hostname>${hostname}</hostname>
                 <runtime.env>test</runtime.env>
             </properties>
         </profile>
@@ -67,6 +72,8 @@
             <properties>
                 <final.project.name>registration-center-web</final.project.name>
                 <server.port>${server.port}</server.port>
+                <defaultZone>${defaultZone}</defaultZone>
+                <hostname>${hostname}</hostname>
                 <runtime.env>online</runtime.env>
             </properties>
         </profile>

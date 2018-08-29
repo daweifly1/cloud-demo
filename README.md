@@ -5,7 +5,11 @@ spring-cloud学习demo
 
 registration-center-web注册中心
 测试环境构建脚本
-mvn clean package  -Ptest -Dserver.port=8882
+mvn clean package  -Ptest -Dserver.port=8882 -Dhostname=peer1 -DdefaultZone=http://peer2:8883
+
+mvn clean package  -Ptest -Dserver.port=8883 -Dhostname=peer2 -DdefaultZone=http://peer1:8882
+
+
 执行
 java -jar registration-center-web-exec.jar
 
