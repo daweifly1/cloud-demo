@@ -54,7 +54,7 @@
                 <final.project.name>provider-web</final.project.name>
                 <server.port>8781</server.port>
                 <runtime.env>local</runtime.env>
-
+                <defaultZone>http://localhost:8881/eureka/</defaultZone>
                 <!--sql日志级别-->
                 <log.sql.level>debug</log.sql.level>
                 <!--忽略测试-->
@@ -69,6 +69,7 @@
             <properties>
                 <final.project.name>provider-web</final.project.name>
                 <server.port>${server.port}</server.port>
+                <defaultZone>${defaultZone}</defaultZone>
                 <runtime.env>test</runtime.env>
             </properties>
         </profile>
