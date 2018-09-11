@@ -17,11 +17,11 @@ echo path %~dp0
 call mvn install
 
 cd register-center-web
-call mvn clean package  -Ptest -Dserver.port=8882 -Dhostname=peer1 -DdefaultZone=http://peer2:8883 -Dfinal.project.name=registration-center-web
+call mvn clean package  -Ptest -Dserver.port=8881 -Dhostname=peer1 -DdefaultZone=http://peer2:8882 -Dfinal.project.name=registration-center-web
 
 copy  %~dp0cloud-demo\register-center-web\target\registration-center-web-exec.jar    %~dp0temp\registration-center-web-exec.jar
 
-call mvn clean  package  -Ptest -Dserver.port=8883 -Dhostname=peer2 -DdefaultZone=http://peer1:8882 -Dfinal.project.name=registration-center-web1
+call mvn clean  package  -Ptest -Dserver.port=8882 -Dhostname=peer2 -DdefaultZone=http://peer1:8881 -Dfinal.project.name=registration-center-web1
 
 copy  %~dp0cloud-demo\register-center-web\target\registration-center-web1-exec.jar    %~dp0temp\registration-center-web1-exec.jar
 
