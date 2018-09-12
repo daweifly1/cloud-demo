@@ -2,26 +2,22 @@ package com.dv.zuul;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.RefreshableRouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.SimpleRouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties.ZuulRoute;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-@Component
 public class CustomRouteLocator extends SimpleRouteLocator implements RefreshableRouteLocator {
 
     public final static Logger logger = LoggerFactory.getLogger(CustomRouteLocator.class);
 
-    @Autowired
     JdbcTemplate jdbcTemplate;
 
     private ZuulProperties properties;
@@ -35,13 +31,6 @@ public class CustomRouteLocator extends SimpleRouteLocator implements Refreshabl
         this.properties = properties;
         logger.info("servletPath:{}", servletPath);
     }
-
-    //父类已经提供了这个方法，这里写出来只是为了说明这一个方法很重要！！！
-//    @Override
-//    protected void doRefresh() {
-//        super.doRefresh();
-//    }
-
 
     @Override
     public void refresh() {
@@ -78,7 +67,7 @@ public class CustomRouteLocator extends SimpleRouteLocator implements Refreshabl
         Map<String, ZuulRoute> routes = new LinkedHashMap<>();
         List<ZuulRouteVO> results = jdbcTemplate.query("select * from gateway_api_define where enabled = true ", new BeanPropertyRowMapper<>(ZuulRouteVO.class));
         for (ZuulRouteVO result : results) {
-            if (org.apache.commons.lang3.StringUtils.isBlank(result.getPath()) || org.apache.commons.lang3.StringUtils.isBlank(result.getUrl())) {
+            if (org.apache.commons.lang.StringUtils.isBlank(result.getPath()) || org.apache.commons.lang.StringUtils.isBlank(result.getUrl())) {
                 continue;
             }
             ZuulRoute zuulRoute = new ZuulRoute();

@@ -1,23 +1,41 @@
+server:
+  port: @server.port@
+eureka:
+  instance:
+    #服务过期时间配置,超过这个时间没有接收到心跳EurekaServer就会将这个实例剔除
+    lease-expiration-duration-in-seconds: 15
+    #服务刷新时间配置，每隔这个时间会主动心跳一次
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: @defaultZone@
+    registryFetchIntervalSeconds: 5         #eureka client刷新本地缓存时间
+
+#无状态session
+security:
+  sessions: stateless
 
 spring:
-  #DATABASE CONFIG
   application:
-    name: springms-provider-user-mysql-jdbctemplate  #全部小写
+    name: gateway
+  #DATABASE CONFIG
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     username: qdm169445471
     password: wangyidan1
     url: jdbc:mysql://qdm169445471.my3w.com:3306/qdm169445471_db?useUnicode=true&characterEncoding=utf-8&useSSL=false
-  zipkin:
-      enabled: true
-  sleuth:
-    sampler:
-      percentage: 0.2
+  jpa:
+    hibernate:
+      #ddl-auto: create #ddl-auto:设为create表示每次都重新建表
+      ddl-auto: update #ddl-auto:设为update表示每次都不会重新建表
+    show-sql: true
+#  zipkin:
+#      enabled: true
+#  sleuth:
+#    sampler:
+#      percentage: 0.2
 
-eureka:
-  client:
-    healthcheck:
-      enabled: true
 #
 ##clientId和isJwt必填其一
 #xcloud:
@@ -39,12 +57,12 @@ eureka:
 #      - /**/error
 #      - /sysLog**/**
 
-ribbon:
-  eager-load:
-    enabled: true
-    clients: xcloud-user
-  readTimeout: 5000
-  connectTimeout: 5000
+#ribbon:
+#  eager-load:
+#    enabled: true
+#    clients: xcloud-user
+#  readTimeout: 5000
+#  connectTimeout: 5000
 #  httpclient.enabled: false
 #  okhttp.enabled: true
 

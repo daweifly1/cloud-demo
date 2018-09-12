@@ -16,6 +16,12 @@ java -jar registration-center-web-exec.jar
 或者执行时候指定端口  java -jar 打包之后的SpringBoot.jar  --server.port=8000
 
 
+gateway 支持数据库配置路由信息
+delete from gateway_api_define;
+INSERT INTO gateway_api_define (id, path, service_id, retryable, strip_prefix, url, enabled) VALUES ('api-a', '/api-a/**', null,0,1, 'service-ribbon', 1);
+INSERT INTO gateway_api_define (id, path, service_id, retryable, strip_prefix, url, enabled) VALUES ('api-b', '/api-b/**', null,0,1, 'service-feign', 1);
+
+
 
 
 
