@@ -35,7 +35,11 @@ spring:
 #  sleuth:
 #    sampler:
 #      percentage: 0.2
-
+zuul:
+  ignored-services: "*"
+  sensitive-headers:                  #忽略cookies 会话保持
+  add-host-header: true               #后端重定向不改变host
+  prefix: /api #公共的前缀
 #
 ##clientId和isJwt必填其一
 #xcloud:
