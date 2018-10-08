@@ -82,9 +82,9 @@
             <id>local</id>
             <properties>
                 <final.project.name>gateway</final.project.name>
-                <server.port>8661</server.port>
+                <server.port>9013</server.port>
                 <runtime.env>local</runtime.env>
-                <defaultZone>http://localhost:8881/eureka/</defaultZone>
+                <defaultZone>http://127.0.0.1:7001/eureka/</defaultZone>
                 <!--sql日志级别-->
                 <log.sql.level>debug</log.sql.level>
                 <!--忽略测试-->

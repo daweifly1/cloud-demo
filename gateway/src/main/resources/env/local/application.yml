@@ -11,11 +11,6 @@ eureka:
     service-url:
       defaultZone: @defaultZone@
     registryFetchIntervalSeconds: 5         #eureka client刷新本地缓存时间
-
-#无状态session
-security:
-  sessions: stateless
-
 spring:
   application:
     name: gateway
@@ -37,9 +32,10 @@ spring:
 #      percentage: 0.2
 zuul:
   ignored-services: "*"
-  sensitive-headers:                  #忽略cookies 会话保持
+  sensitive-headers: x-user-id,x-access-client,x-case-ticket                  #忽略cookies 会话保持
   add-host-header: true               #后端重定向不改变host
-  prefix: /api #公共的前缀
+#  prefix: /api #公共的前缀
+
 #
 ##clientId和isJwt必填其一
 #xcloud:

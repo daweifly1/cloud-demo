@@ -67,11 +67,11 @@
 
     <!-- logger -->
     <!-- 通常情况下配置的业务日志，按工程包名做匹配，异步输出日志 -->
-    <!--<logger name="com.netease.kaola" level="INFO" additivity="false">-->
-    <!--<appender-ref ref="asyncCommonAppender"/>-->
-    <!--<appender-ref ref="asyncErrorAppender"/>-->
-    <!--<appender-ref ref="asyncStdoutAppender"/>-->
-    <!--</logger>-->
+    <logger name="com.dv" level="debug" additivity="false">
+        <appender-ref ref="asyncCommonAppender"/>
+        <appender-ref ref="asyncErrorAppender"/>
+        <appender-ref ref="asyncStdoutAppender"/>
+    </logger>
 
     <!-- 一些第三方包的日志输出，可能需要做额外处理 -->
     <!--<logger name="com.netease.kaola.generic.element.dao.mapper" level="${log.sql.level}" additivity="true">-->
@@ -80,7 +80,7 @@
     <!--</logger>-->
 
     <root>
-        <level value="INFO"/>
+        <level value="info"/>
         <appender-ref ref="asyncCommonAppender"/>
         <appender-ref ref="asyncErrorAppender"/>
         <appender-ref ref="asyncStdoutAppender"/>
